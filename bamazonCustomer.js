@@ -110,8 +110,8 @@ function placeOrder(currentAmount, amountOrdered, id, price) {
            
             // console.log(res.affectedRows + " products updated \n");
             // console.log(`${JSON.stringify(res)}    entire res `)
-
-        })
+  
+     })
 };
 
 function changeOrder() {
