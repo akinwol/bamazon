@@ -1,5 +1,6 @@
 var mysql = require("mysql");
 var inquirer = require("inquirer");
+const cTable = require('console.table');
 
 var connection = mysql.createConnection({
     host: "localhost",
@@ -63,10 +64,11 @@ function displayProducts() {
         if (err) throw err;
         // loop through the results and display each item in the table
         // the results from this query is an array 
-        res.forEach(function (item) {
-            console.log(`${item.item_id}||${item.product_name}||${item.price}||${item.stock_quantity}`);
+       console.table(res)
+        // res.forEach(function (item) {
+        //     console.log(`${item.item_id}||${item.product_name}||${item.price}||${item.stock_quantity}`);
 
-        });
+        // });
         initialLoad();
 
     });
@@ -78,10 +80,11 @@ function lowInv() {
     connection.query(query, function (err, res) {
         if (err) throw err;
         // console.log(res)
-        res.forEach(function (item) {
-            console.log(`${item.item_id}||${item.product_name}||${item.price}||${item.stock_quantity}`)
-            // connection.end();
-        });
+        console.table(res)
+        // res.forEach(function (item) {
+        //     console.log(`${item.item_id}||${item.product_name}||${item.price}||${item.stock_quantity}`)
+        //     // connection.end();
+        // });
         initialLoad();
 
     });
@@ -94,6 +97,7 @@ function addInventory() {
     // select from the entire products table
     connection.query("SELECT * FROM products", function (err, res) {
         if (err) throw err;
+
 
         // for each item in the results array puch each product name to 
         // the product selction array 
